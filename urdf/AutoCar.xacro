@@ -6,9 +6,9 @@
 <xacro:include filename="$(find auto_car_description)/urdf/AutoCar.gazebo" />
 <link name="base_link">
   <inertial>
-    <origin xyz="-0.003146316924459841 -1.0874806484475148e-16 0.032267635209005975" rpy="0 0 0"/>
-    <mass value="42.01731210785512"/>
-    <inertia ixx="0.137212" iyy="1.462636" izz="1.568445" ixy="-0.0" iyz="-0.0" ixz="-0.000365"/>
+    <origin xyz="-0.0008559347867336729 -1.0776657557532648e-16 0.032797715315650726" rpy="0 0 0"/>
+    <mass value="42.39998679844243"/>
+    <inertia ixx="0.138613" iyy="1.488522" izz="1.592956" ixy="-0.0" iyz="-0.0" ixz="-0.006017"/>
   </inertial>
   <visual>
     <origin xyz="0 0 0" rpy="0 0 0"/>
@@ -110,6 +110,49 @@
 </link>
 
 
+<link name="camera_rotate_servo_1">
+  <inertial>
+    <origin xyz="0.001018906391389518 -1.7763568394002506e-16 0.00999999999998398" rpy="0 0 0"/>
+    <mass value="0.3675302288901849"/>
+    <inertia ixx="9e-05" iyy="8.9e-05" izz="0.000152" ixy="0.0" iyz="0.0" ixz="-0.0"/>
+  </inertial>
+  <visual>
+    <origin xyz="-0.250626 -0.0 -0.116" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="file://$(find auto_car_description)/meshes/camera_rotate_servo_1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+    <material name="silver"/>
+  </visual>
+  <collision>
+    <origin xyz="-0.250626 -0.0 -0.116" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="file://$(find auto_car_description)/meshes/camera_rotate_servo_1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+  </collision>
+</link>
+
+<link name="camera_tilt_servo_1">
+  <inertial>
+    <origin xyz="0.02297270847794408 3.293785511004899e-10 1.1765838303645637e-11" rpy="0 0 0"/>
+    <mass value="0.09526148376679884"/>
+    <inertia ixx="5.4e-05" iyy="5.3e-05" izz="0.000103" ixy="-0.0" iyz="-0.0" ixz="-0.0"/>
+  </inertial>
+  <visual>
+    <origin xyz="-0.235626 -0.0 -0.126" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="file://$(find auto_car_description)/meshes/camera_tilt_servo_1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+    <material name="silver"/>
+  </visual>
+  <collision>
+    <origin xyz="-0.235626 -0.0 -0.126" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="file://$(find auto_car_description)/meshes/camera_tilt_servo_1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+  </collision>
+</link>
+
+
 
 <link name="front_left_hinge">
   <visual>
@@ -169,6 +212,20 @@
   <parent link="base_link"/>
   <child link="rear_right_wheel_1"/>
   <axis xyz="0.0 -1.0 0.0"/>
+</joint>
+
+<joint name="joint_cam_rotate" type="continuous">
+  <origin xyz="0.250626 0.0 0.116" rpy="0 0 0"/>
+  <parent link="base_link"/>
+  <child link="camera_rotate_servo_1"/>
+  <axis xyz="0.0 0.0 1.0"/>
+</joint>
+
+<joint name="joint_cam_tilt" type="continuous">
+  <origin xyz="-0.015 0.0 0.01" rpy="0 0 0"/>
+  <parent link="camera_rotate_servo_1"/>
+  <child link="camera_tilt_servo_1"/>
+  <axis xyz="0.0 1.0 0.0"/>
 </joint>
 
 </robot>
