@@ -1,0 +1,174 @@
+<?xml version="1.0" ?>
+<robot name="AutoCar" xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+<xacro:include filename="$(find auto_car_description)/urdf/materials.xacro" />
+<xacro:include filename="$(find auto_car_description)/urdf/AutoCar.trans" />
+<xacro:include filename="$(find auto_car_description)/urdf/AutoCar.gazebo" />
+<link name="base_link">
+  <inertial>
+    <origin xyz="-0.003146316924459841 -1.0874806484475148e-16 0.032267635209005975" rpy="0 0 0"/>
+    <mass value="42.01731210785512"/>
+    <inertia ixx="0.137212" iyy="1.462636" izz="1.568445" ixy="-0.0" iyz="-0.0" ixz="-0.000365"/>
+  </inertial>
+  <visual>
+    <origin xyz="0 0 0" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="file://$(find auto_car_description)/meshes/base_link.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+    <material name="silver"/>
+  </visual>
+  <collision>
+    <origin xyz="0 0 0" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="file://$(find auto_car_description)/meshes/base_link.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+  </collision>
+</link>
+
+<link name="front_left_wheel_1">
+  <inertial>
+    <origin xyz="0.0 0.035 0.0" rpy="0 0 0"/>
+    <mass value="7.0709459482525325"/>
+    <inertia ixx="0.010128" iyy="0.014481" izz="0.010128" ixy="0.0" iyz="0.0" ixz="0.0"/>
+  </inertial>
+  <visual>
+    <origin xyz="-0.135 -0.1 -0.005" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="file://$(find auto_car_description)/meshes/front_left_wheel_1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+    <material name="silver"/>
+  </visual>
+  <collision>
+    <origin xyz="-0.135 -0.1 -0.005" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="file://$(find auto_car_description)/meshes/front_left_wheel_1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+  </collision>
+</link>
+
+<link name="front_right_wheel_1">
+  <inertial>
+    <origin xyz="0.0 -0.035 0.0" rpy="0 0 0"/>
+    <mass value="7.0709459482525325"/>
+    <inertia ixx="0.010128" iyy="0.014481" izz="0.010128" ixy="0.0" iyz="0.0" ixz="0.0"/>
+  </inertial>
+  <visual>
+    <origin xyz="-0.135 0.1 -0.005" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="file://$(find auto_car_description)/meshes/front_right_wheel_1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+    <material name="silver"/>
+  </visual>
+  <collision>
+    <origin xyz="-0.135 0.1 -0.005" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="file://$(find auto_car_description)/meshes/front_right_wheel_1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+  </collision>
+</link>
+
+<link name="rear_left_wheel_1">
+  <inertial>
+    <origin xyz="0.0 0.035 0.0" rpy="0 0 0"/>
+    <mass value="7.0709459482525325"/>
+    <inertia ixx="0.010128" iyy="0.014481" izz="0.010128" ixy="0.0" iyz="0.0" ixz="-0.0"/>
+  </inertial>
+  <visual>
+    <origin xyz="0.165 -0.1 -0.005" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="file://$(find auto_car_description)/meshes/rear_left_wheel_1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+    <material name="silver"/>
+  </visual>
+  <collision>
+    <origin xyz="0.165 -0.1 -0.005" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="file://$(find auto_car_description)/meshes/rear_left_wheel_1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+  </collision>
+</link>
+
+<link name="rear_right_wheel_1">
+  <inertial>
+    <origin xyz="0.0 -0.035 0.0" rpy="0 0 0"/>
+    <mass value="7.0709459482525325"/>
+    <inertia ixx="0.010128" iyy="0.014481" izz="0.010128" ixy="0.0" iyz="-0.0" ixz="-0.0"/>
+  </inertial>
+  <visual>
+    <origin xyz="0.165 0.1 -0.005" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="file://$(find auto_car_description)/meshes/rear_right_wheel_1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+    <material name="silver"/>
+  </visual>
+  <collision>
+    <origin xyz="0.165 0.1 -0.005" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="file://$(find auto_car_description)/meshes/rear_right_wheel_1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+  </collision>
+</link>
+
+
+
+<link name="front_left_hinge">
+  <visual>
+    <origin rpy="0 0 0" xyz="0 0 0"/>
+    <geometry>
+      <sphere radius="0.015"/>
+    </geometry>
+  </visual>
+</link>
+<joint name="front_left_hinge_joint" type="revolute">
+  <parent link="base_link"/>
+  <child link="front_left_hinge"/>
+  <origin rpy="0 0 0" xyz="0.135 0.1 0.005"/>
+  <axis xyz="0 0 1"/>
+  <limit effort="10" lower="-0.34" upper="0.34" velocity="100"/>
+</joint>
+
+<link name="front_right_hinge">
+  <visual>
+    <origin rpy="0 0 0" xyz="0 0 0"/>
+    <geometry>
+      <sphere radius="0.015"/>
+    </geometry>
+  </visual>
+</link>
+<joint name="front_right_hinge_joint" type="revolute">
+  <parent link="base_link"/>
+  <child link="front_right_hinge"/>
+  <origin rpy="0 0 0" xyz="0.135 -0.1 0.005"/>
+  <axis xyz="0 0 1"/>
+  <limit effort="10" lower="-0.34" upper="0.34" velocity="100"/>
+</joint>
+
+<joint name="joint_front_left" type="continuous">
+  <origin xyz="0 0 0" rpy="0 0 0"/>
+  <parent link="front_left_hinge"/>
+  <child link="front_left_wheel_1"/>
+  <axis xyz="0.0 1.0 0.0"/>
+</joint>
+
+<joint name="joint_front_right" type="continuous">
+  <origin xyz="0 0 0" rpy="0 0 0"/>
+  <parent link="front_right_hinge"/>
+  <child link="front_right_wheel_1"/>
+  <axis xyz="0.0 -1.0 0.0"/>
+</joint>
+
+<joint name="joint_rear_left" type="continuous">
+  <origin xyz="-0.165 0.1 0.005" rpy="0 0 0"/>
+  <parent link="base_link"/>
+  <child link="rear_left_wheel_1"/>
+  <axis xyz="0.0 1.0 0.0"/>
+</joint>
+
+<joint name="joint_rear_right" type="continuous">
+  <origin xyz="-0.165 -0.1 0.005" rpy="0 0 0"/>
+  <parent link="base_link"/>
+  <child link="rear_right_wheel_1"/>
+  <axis xyz="0.0 -1.0 0.0"/>
+</joint>
+
+</robot>
