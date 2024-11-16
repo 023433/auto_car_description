@@ -6,9 +6,9 @@
 <xacro:include filename="$(find auto_car_description)/urdf/AutoCar.gazebo" />
 <link name="base_link">
   <inertial>
-    <origin xyz="-0.0008559347867336729 -1.0776657557532648e-16 0.032797715315650726" rpy="0 0 0"/>
-    <mass value="42.39998679844243"/>
-    <inertia ixx="0.138613" iyy="1.488522" izz="1.592956" ixy="-0.0" iyz="-0.0" ixz="-0.006017"/>
+    <origin xyz="0.006241047940893729 1.7542466020202997e-05 0.04792208933122006" rpy="0 0 0"/>
+    <mass value="51.74527306163868"/>
+    <inertia ixx="0.210744" iyy="1.719578" izz="1.775248" ixy="-0.00012" iyz="-9.1e-05" ixz="-0.04364"/>
   </inertial>
   <visual>
     <origin xyz="0 0 0" rpy="0 0 0"/>
@@ -153,6 +153,26 @@
 </link>
 
 
+<link name="lidar_1">
+  <inertial>
+    <origin xyz="-1.4978991194625202e-07 -6.94672942983649e-08 0.018020517916249423" rpy="0 0 0"/>
+    <mass value="1.2797567850628393"/>
+    <inertia ixx="0.000591" iyy="0.000591" izz="0.000902" ixy="-0.0" iyz="0.0" ixz="0.0"/>
+  </inertial>
+  <visual>
+    <origin xyz="-0.138818 -0.000316 -0.176" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="file://$(find auto_car_description)/meshes/lidar_1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+    <material name="silver"/>
+  </visual>
+  <collision>
+    <origin xyz="-0.138818 -0.000316 -0.176" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="file://$(find auto_car_description)/meshes/lidar_1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+  </collision>
+</link>
 
 <link name="front_left_hinge">
   <visual>
@@ -226,6 +246,13 @@
   <parent link="camera_rotate_servo_1"/>
   <child link="camera_tilt_servo_1"/>
   <axis xyz="0.0 1.0 0.0"/>
+</joint>
+
+<joint name="joint_lidar" type="continuous">
+  <origin xyz="0.138818 0.000316 0.176" rpy="0 0 0"/>
+  <parent link="base_link"/>
+  <child link="lidar_1"/>
+  <axis xyz="0.0 0.0 1.0"/>
 </joint>
 
 </robot>
