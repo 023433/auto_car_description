@@ -45,4 +45,37 @@
   </actuator>
 </transmission>
 
+<transmission name="joint_cam_rotate_tran">
+  <type>transmission_interface/SimpleTransmission</type>
+  <joint name="joint_cam_rotate">
+    <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+  </joint>
+  <actuator name="joint_cam_rotate_actr">
+    <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+    <mechanicalReduction>1</mechanicalReduction>
+  </actuator>
+</transmission>
+
+<transmission name="joint_cam_tilt_tran">
+  <type>transmission_interface/SimpleTransmission</type>
+  <joint name="joint_cam_tilt">
+    <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+  </joint>
+  <actuator name="joint_cam_tilt_actr">
+    <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+    <mechanicalReduction>1</mechanicalReduction>
+  </actuator>
+</transmission>
+
+<transmission name="joint_lidar_tran">
+  <type>transmission_interface/SimpleTransmission</type>
+  <joint name="joint_lidar">
+    <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+  </joint>
+  <actuator name="joint_lidar_actr">
+    <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+    <mechanicalReduction>1</mechanicalReduction>
+  </actuator>
+</transmission>
+
 </robot>
