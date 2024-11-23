@@ -206,6 +206,26 @@
   <limit effort="10" lower="-0.34" upper="0.34" velocity="100"/>
 </joint>
 
+<link name="imu_link">
+  <collision>
+    <origin xyz="0 0 0" rpy="0 0 0"/>
+    <geometry>
+      <box size="0.1 0.1 0.1"/>
+    </geometry>
+  </collision>
+  <inertial>
+    <mass value="1e-5" />
+    <origin xyz="0 0 0" rpy="0 0 0"/>
+    <inertia ixx="1e-6" ixy="0" ixz="0" iyy="1e-6" iyz="0" izz="1e-6" />
+  </inertial>
+</link>
+
+<joint name="imu_joint" type="fixed">
+  <origin xyz="-0.039 0 0.0859" rpy="0 0 0"/>
+  <parent link="base_link"/>
+  <child link="imu_link"/>
+</joint>
+
 <joint name="joint_front_left" type="continuous">
   <origin xyz="0 0 0" rpy="0 0 0"/>
   <parent link="front_left_hinge"/>
